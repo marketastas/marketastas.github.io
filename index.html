@@ -1,0 +1,550 @@
+<!DOCTYPE html> 
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mgr. Markéta Šťastná | Psychologická péče pro dospělé</title>
+
+  <!-- SEO meta -->
+  <meta name="description" content="Mgr. Markéta Šťastná – psycholog v Olomouci nabízí psychologickou péči pro dospělé, terapii a psychologické poradenství.">
+  <meta name="keywords" content="psycholog Olomouc, psychologická péče pro dospělé, psychoterapie, terapie, psychologické poradenství, logoterapie, existenciální analýza">
+  <meta name="author" content="Mgr. Markéta Šťastná">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mgr. Markéta Šťastná | Psychologická péče pro dospělé">
+  <meta property="og:description" content="Psycholog v Olomouci – individuální terapie a psychologické poradenství pro dospělé.">
+  <meta property="og:image" content="pozadi.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.tvoje-domena.cz">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon_small.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="favicon_large.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="favicon_large.png">
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      background-color: #faf8f4;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: relative;
+      height: 60vh;
+      background: url('pozadi.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #2e2e2e;
+    }
+
+    .header-content { position: relative; z-index: 1; }
+
+    .header-content h1 {
+      font-family: 'Allura', cursive;
+      font-size: 5rem;
+      color: #2e2e2e;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .header-content h2 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 7px;
+      color: #444;
+      text-transform: uppercase;
+    }
+
+    nav {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #2e2e2e;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover { color: #5b7a8a; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 3;
+    }
+    .hamburger div { width: 25px; height: 3px; background: #2e2e2e; }
+
+    main { position: relative; overflow: hidden; min-height: 80vh; font-size: 1.05rem; }
+
+    section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      padding: 4rem 10%;
+      text-align: left;
+      line-height: 1.7;
+      background: #faf8f4;
+    }
+
+    section.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #2e2e2e;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .about img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .about-text { flex: 1; }
+
+    .cv-block { margin-top: 3rem; width: 100%; line-height: 1.9; font-size: 1rem; }
+
+    .cv-block h4 {
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .cv-row {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .cv-year { width: 140px; font-weight: 500; }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      background: #5b7a8a;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: 0.3s ease;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    section.active .back-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f4f1eb;
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    footer .footer-keywords {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* -------------------------------------------------------------------
+       MOBILNÍ STYL – PC BEZ ZMĚNY
+    ------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+
+      header {
+        height: 50vh;
+        padding-top: 40px;
+      }
+
+      .header-content h1 {
+        font-size: 3rem;
+        line-height: 1.15;
+      }
+
+      .header-content h2 {
+        font-size: 1.2rem;
+        letter-spacing: 4px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        background: rgba(255,255,255,0.95);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        display: none;
+      }
+
+      nav ul.active {
+        display: block;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+  </style>
+
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>Mgr. Markéta Šťastná</h1>
+    <h2>PSYCHOLOGICKÁ PÉČE PRO DOSPĚLÉ</h2>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+
+  <nav>
+    <ul id="nav-links">
+      <li><a href="#" onclick="showSection('uvod')">Úvod</a></li>
+      <li><a href="#" onclick="showSection('omne')">O mně</a></li>
+      <li><a href="#" onclick="showSection('sluzby')">Služby</a></li>
+      <li><a href="#" onclick="showSection('cenik')">Ceník</a></li>
+      <li><a href="#" onclick="showSection('kontakt')">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<!-- ÚVOD -->
+<section id="uvod" class="active" style="
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+">
+  <div style="flex: 1 1 300px; min-width: 280px;">
+    <h3>Vítejte</h3>
+    <p>
+       Vítám vás na svých stránkách.<br>
+    Nabízím individuální psychologickou péči a terapii pro dospělé.<br>
+    Pokud prožíváte těžké období, dlouhodobě narážíte na opakující se nefunkční vzorce nebo máte pocit, 
+    že jste se dostali v životě do slepé uličky, jste tu správně. Neváhejte mě kontaktovat. 
+    Mým úkolem není vše za vás vyřešit, ale být vám průvodcem na cestě za vědomým rozhodnutím a změnou. 
+<br>    
+Ačkoliv nemáme moc ovlivnit vnější události, máme plnou kontrolu nad naší vnitřní reakcí na ně.
+  </p>
+
+  <br><br>
+
+  <p style="font-style: italic; font-size: 1.05em; margin-bottom: 0;">
+    „Když již nemůžeme změnit situaci, jsme vyzýváni změnit sami sebe.“  
+  </p>
+  <p style="text-align: right; margin-top: 4px; font-style: italic;">
+    Viktor Frankl
+  </p>
+</div>
+    </p>
+  </div>
+
+  <div style="flex: 1 1 300px; min-width: 280px; text-align: right;">
+    <img src="Místnost.jpeg"
+         alt="Konzultační místnost"
+         style="width: 100%; max-width: 420px; border-radius: 10px; object-fit: cover; margin-top: 90px;">
+  </div>
+</section>
+
+<!-- O MNĚ -->
+<section id="omne">
+      <h3>O mně</h3>
+      <div class="about">
+        <div class="about-text">
+          <p>
+            Jsem jednooborová psycholožka, která věří, že každý člověk má v sobě potenciál k růstu, změně a nalezení vlastní cesty. 
+            Pracuji s respektem, empatií a důrazem na jedinečnost každého klienta.
+          </p>
+          <p>
+ <br>
+          Ve své práci vycházím z teoretického i praktického zázemí <strong>Logoterapie a existenciální analýzy,</strong> které jsem studovala u společnosti 
+            <a href="https://www.slea.cz/" target="_blank">SLEA</a>. 
+            Tato škola vychází z filozofie Viktora E. Frankla a zaměřuje se na hledání smyslu, odpovědnosti a autenticity v životě.
+          </p>
+          <p>
+ <br>
+            Při práci s klienty se zaměřuji na jejich aktuální prožívání, porozumění vlastním emocím a posílení schopnosti činit vědomá rozhodnutí. Nejčastějším nástrojem terapie je slovo. Pracuji ale také se sny, metaforami, imaginací a projektivními technikami, jako je sandplay nebo terapeutické karty. 
+Najdete u mě laskavý a empatický přístup využívající principů fenomenologie.
+          </p>
+        </div>
+        <img src="IMG-20230913-WA0053.jpg" alt="Mgr. Markéta Šťastná">
+  </div>
+
+  <div class="cv-block">
+
+    <h4>VZDĚLÁNÍ</h4>
+ <div class="cv-row"><div class="cv-year">2019–2024</div><div>Psychoterapeutický výcvik v Logoterapii a existenciální analýze (pod supervizí)</div></div>
+    <div class="cv-row"><div class="cv-year">2015–2018</div><div>Univerzita Palackého v Olomouci, katedra psychologie, Mgr. studium</div></div>
+    <div class="cv-row"><div class="cv-year">2012–2015</div><div>Univerzita Palackého v Olomouci, katedra psychologie, Bc. studium</div></div>
+   
+    <h4>DALŠÍ VZDĚLÁNÍ</h4>
+    <div class="cv-row"><div class="cv-year">2025</div><div>Kurz práce se sny v psychoterapii</div></div>
+    <div class="cv-row"><div class="cv-year">2023–2024</div><div>Kurz traumaterapie (SLEA)</div></div>
+    <div class="cv-row"><div class="cv-year">2018</div><div>Práce s tělem v krizové intervenci</div></div>
+    <div class="cv-row"><div class="cv-year">2017</div><div>Kurz krizové intervence</div></div>
+    <div class="cv-row"><div class="cv-year">2017</div><div>Kurz psycholog ve zdravotnictví</div></div>
+    <div class="cv-row"><div class="cv-year">2017</div><div>Kurz poradenské propedeutiky</div></div>
+
+    <h4>PRACOVNÍ ZKUŠENOSTI</h4>
+    <div class="cv-row"><div class="cv-year">2024–souč.</div><div>Vlastní terapeutická praxe</div></div>
+    <div class="cv-row"><div class="cv-year">2023–souč.</div><div>UPOL + další organizace – přednášková činnost</div></div>
+    <div class="cv-row"><div class="cv-year">2020–2025</div><div>Psychologická ambulance HELP s.r.o. – psychologická péče pro dospělé</div></div>
+    <div class="cv-row"><div class="cv-year">2020–2024</div><div>Masarykova ZŠ a MŠ Velká Bystřice – školní psycholog</div></div>
+    <div class="cv-row"><div class="cv-year">2019–2020</div><div>Generální ředitelství cel – psycholog celní správy</div></div>
+    <div class="cv-row"><div class="cv-year">2018–2019</div><div>Krajské ředitelství policie OK – policejní psycholog</div></div>
+    <div class="cv-row"><div class="cv-year">2017–2019</div><div>Olomoucká linka důvěry – konzultant</div></div>
+    <div class="cv-row"><div class="cv-year">2016–2017</div><div>Psychiatrické oddělení VN Olomouc – spolupráce</div></div>
+    <div class="cv-row"><div class="cv-year">2013–2018</div><div>LDN Klášterní Hradisko, Olomouc – spolupráce</div></div>
+
+  </div>
+
+  <a href="#" class="back-btn" onclick="showSection('uvod')">← Zpět na úvod</a>
+</section>
+
+<!-- SLUŽBY -->
+<section id="sluzby">
+  <h3>Služby</h3>
+
+  <p>
+    <strong style="text-transform: uppercase; letter-spacing: 1px;">S ČÍM SE NA MĚ MŮŽETE OBRÁTIT</strong>
+  </p>
+
+  <br>
+
+  <ul style="line-height: 1.9; margin-left: 1rem;">
+    <li>Úzkost, deprese, fobie, panické poruchy</li>
+    <li>Depresivní symptomatika (smutná nálada, ztráta energie, ztráta životního smyslu, ...)</li>
+    <li>Psychosomatické obtíže (chronické bolesti, vysoký tlak, nespavost, ...)</li>
+    <li>Závislosti</li>
+    <li>Stres a syndrom vyhoření</li>
+    <li>Vztahová problematika</li>
+    <li>Zvládání náročných životních situací</li>
+    <li>Problémy identity a sexuální orientace</li>
+    <li>Poruchy osobnosti</li>
+    <li>Adaptace na životní změny</li>
+    <li>Traumata</li>
+    <li>… a další (vnitřní nejistota, nedostatek sebedůvěry, tréma, komunikace, sebepoškozování, sebevražedné myšlenky aj.)</li>
+  </ul>
+
+  <br><br>
+
+  <p style="font-style: italic; line-height: 1.8;">
+    „Sezení jsou přizpůsobována vašim potřebám tak, aby byla nastavena vzájemná důvěra v atmosféře bezpečí.
+    S každým klientem pracujeme na základě společné domluvy o cílech terapie.
+    Jsem vázána mlčenlivostí a řídím se zásadami Etického kodexu Evropské asociace pro psychoterapii.“
+  </p>
+
+  <a href="#" class="back-btn" onclick="showSection('uvod')">← Zpět na úvod</a>
+</section>
+
+<!-- CENÍK -->
+<section id="cenik"> 
+  <h3>Ceník</h3> 
+  <div style="line-height: 1.9;"> 
+    <div style="font-weight: 600; display: flex; align-items: center; max-width: 650px; justify-content: space-between;"> 
+      <span>Individuální konzultace (50 minut)</span> 
+      <span style="flex: 1; border-bottom: 1px dotted #bbb; margin: 0 10px;"></span> 
+      <span style="font-weight: 700;">1&nbsp;200&nbsp;Kč</span> 
+    </div> 
+
+    <div style="font-weight: 600; display: flex; align-items: center; max-width: 650px; justify-content: space-between;"> 
+      <span>Online konzultace (50 minut)</span> 
+      <span style="flex: 1; border-bottom: 1px dotted #bbb; margin: 0 10px;"></span> 
+      <span style="font-weight: 700;">1&nbsp;200&nbsp;Kč</span> 
+    </div> 
+
+    <br> 
+
+    <p style="font-style: italic; max-width: 100%; text-align: left;"> 
+      Se zdravotními pojišťovnami nespolupracuji. Všechny služby jsou plně hrazeny klientem. 
+      Vzhledem k tomu o klientech nevedu zdravotnickou dokumentaci, čímž je zajištěna maximální důvěrnost. 
+    </p> 
+
+    <br><br> 
+    <br><br> 
+
+    <strong>PLATEBNÍ PODMÍNKY</strong><br><br> 
+
+    • Platba za konzultaci probíhá na konci sezení <strong>hotově</strong>, <strong>QR kódem</strong> nebo <strong>převodem</strong> na účet.<br><br> 
+
+    • Rezervace termínů jsou závazné, dohodnuté setkání je možné zrušit <strong>nejpozději 24 hodin</strong> předem.  
+     Absenci lze v předstihu omluvit prostřednictvím sms / telefonátu.<br><br> 
+
+    • V případě nedodržení termínu či pozdní omluvy (<24 hodin) se hradí poplatek v <strong>plné výši</strong>.  
+  </div> 
+
+  <a href="#" class="back-btn" onclick="showSection('uvod')">← Zpět na úvod</a> 
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+  
+  <!-- LEVÁ ČÁST -->
+  <div style="flex: 1 1 300px; min-width: 260px;">
+    <h3>Kontakt</h3>
+
+    <p style="line-height: 2;">
+
+      <span style="vertical-align: middle; margin-right: 6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.52a1 1 0 01-1 1A17.92 17.92 0 013 5a1 1 0 011-1h3.52a1 1 0 011 1c0 1.25.2 2.46.59 3.68a1 1 0 01-.24 1.01l-2.25 2.1z"
+                stroke="#5ea7b5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Telefon: <strong>+420 737 827 468</strong><br>
+
+      <span style="vertical-align: middle; margin-right: 6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"
+                stroke="#5ea7b5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 6l-10 7L2 6"
+                stroke="#5ea7b5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      E-mail: <strong>marketastas@gmail.com</strong><br>
+
+      <span style="vertical-align: middle; margin-right: 6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 21s-7-6.16-7-11a7 7 0 1114 0c0 4.84-7 11-7 11z"
+                stroke="#5ea7b5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="10" r="3"
+                stroke="#5ea7b5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Adresa: Kollárovo náměstí 7, Olomouc
+    </p>
+
+    <br>
+
+    <p style="line-height: 2;">
+      <strong style="letter-spacing: 1px;">KONZULTAČNÍ HODINY</strong><br>
+
+      <span style="display: inline-flex; width: 220px; justify-content: space-between;">
+        <span>Pondělí</span> <span>8–15 h</span>
+      </span><br>
+
+      <span style="display: inline-flex; width: 220px; justify-content: space-between;">
+        <span>Úterý</span> <span>8–15 h</span>
+      </span><br>
+
+      <span style="display: inline-flex; width: 220px; justify-content: space-between;">
+        <span>Středa</span> <span>13–19 h</span>
+</span><br>
+
+<span style="display: inline-flex; width: 220px; justify-content: space-between;">
+        <span>Čtvrtek (online)</span> <span>8–15 h</span>
+      </span><br>
+      </span>
+    </p>
+
+    <br>
+
+    <p><em>Konzultace je možné sjednat na jinou hodinu po předchozí domluvě.</em></p>
+
+    <a href="#" class="back-btn">← Zpět na úvod</a>
+  </div>
+
+  <!-- MAPA -->
+  <div style="flex: 1 1 300px; min-width: 260px; text-align: center;">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2570.7853680627433!2d17.250536!3d49.593820!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47124ec239e56df7%3A0x49dcbec51d526c75!2sKoll%C3%A1rovo%20n%C3%A1m.%207%2C%20779%2000%20Olomouc!5e0!3m2!1scs!2scz!4v1700000000000"
+      width="100%"
+      height="300"
+      style="border:0; border-radius: 8px;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  © 2025 Mgr. Markéta Šťastná  
+  <div class="footer-keywords">
+    Hledáte <strong>psychologa v Olomouci</strong>? Nabízím <strong>psychologickou péči pro dospělé</strong>.
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("nav-links").classList.toggle("active");
+  }
+
+  function showSection(id) {
+    const sections = document.querySelectorAll("main section");
+    sections.forEach(section => {
+      section.classList.toggle("active", section.id === id);
+    });
+    document.getElementById("nav-links").classList.remove("active");
+  }
+</script>
+
+</body>
+</html>
